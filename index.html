@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DuoTech | Inovação e Código</title>
+    <meta name="description" content="Landing page da equipe de desenvolvedores DuoTech. Conheça nossos integrantes, habilidades e projetos.">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">DuoTech</a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="#sobre" class="nav__link">Sobre</a></li>
+                    <li><a href="#skills" class="nav__link">Skills</a></li>
+                    <li><a href="#projetos" class="nav__link">Projetos</a></li>
+                    <li><a href="#contato" class="nav__link">Contato</a></li>
+                </ul>
+                <button class="nav__close" id="nav-close" aria-label="Fechar menu"></button>
+            </div>
+           <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menu">
+            <span class="nav__toggle-icon"></span>
+           </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <video autoplay muted loop playsinline class="hero__video">
+                <source src="assets/video/hero.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+            <div class="hero__overlay"></div>
+            <div class="hero__content container">
+                <a href="#projetos" class="button button--ghost">Conheça nossos projetos</a>
+            </div>
+        </section>
+
+        <section id="sobre" class="section container">
+    <h2 class="section__title">Sobre a Equipe</h2>
+    <div class="sobre__grid">
+        <article class="integrante-card">
+            <img src="assets/images/NJ.webp" alt="Foto do Primeiro Integrante" class="integrante-card__img">
+            <h3 class="integrante-card__nome">Naldo Júnior</h3>
+            <p class="integrante-card__posicao">Desenvolvedor Full-Stack</p>
+            <div class="integrante-card__social">
+                <a href="#" target="_blank"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" target="_blank"><img src="assets/icons/github.svg" alt="GitHub"></a>
+            </div>
+        </article>
+        <article class="integrante-card">
+            <img src="assets/images/KM.png" alt="Foto do Segundo Integrante" class="integrante-card__img">
+            <h3 class="integrante-card__nome">Karlos Miguel</h3>
+            <p class="integrante-card__posicao">Desenvolvedor Front-End</p>
+            <div class="integrante-card__social">
+                <a href="#" target="_blank"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" target="_blank"><img src="assets/icons/github.svg" alt="GitHub"></a>
+            </div>
+        </article>
+    </div>
+</section>
+
+    <section id="skills" class="section container">
+        <h2 class="section__title">Nossas Skills</h2>
+        <ul class="skills__list">
+        <li class="skill-item">
+            <i class="devicon-html5-plain"></i>
+            <span>HTML5</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-css3-plain"></i>
+            <span>CSS3</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-javascript-plain"></i>
+            <span>JavaScript</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-react-original"></i>
+            <span>React</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-nodejs-plain"></i>
+            <span>Node.js</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-git-plain"></i>
+            <span>Git</span>
+        </li>
+        <li class="skill-item">
+            <i class="devicon-java-plain"></i>
+            <span>Java</span>
+        </li>
+        </ul>
+    </section>
+
+    <section id="projetos" class="section container">
+        <h2 class="section__title">Projetos Recentes</h2>
+        <div class="projetos__grid">
+
+        <article class="projeto-card">
+            <img src="assets/images/projeto-techconnect.jpg" alt="Imagem do projeto Tech Connect 2025" class="projeto-card__img">
+            <div class="projeto-card__content">
+                <h3 class="projeto-card__title">Tech Connect 2025</h3>
+                <p class="projeto-card__desc">Landing page para um evento de tecnologia, focada em design moderno, responsividade e informações claras sobre programação.</p>
+                
+                <a href="COLOQUE SEU LINK DO GITHUB PARA O TECH-CONNECT AQUI" target="_blank" class="projeto-card__link">
+                    Ver projeto →
+                </a>
+            </div>
+        </article>
+
+        <article class="projeto-card">
+            <img src="assets/images/projeto-acolhemente.jpg" alt="Imagem do projeto AcolheMente" class="projeto-card__img">
+            <div class="projeto-card__content">
+                <h3 class="projeto-card__title">AcolheMente</h3>
+                <p class="projeto-card__desc">Plataforma de acolhimento e apoio emocional para mães e acompanhantes de UTI neonatal, com um design leve e acolhedor.</p>
+
+                <a href="COLOQUE SEU LINK DO GITHUB PARA O ACOLHEMENTE AQUI" target="_blank" class="projeto-card__link">
+                    Ver no GitHub →
+                </a>
+            </div>
+        </article>
+        </div>
+    </section>
+
+        <section id="contato" class="section container">
+            <h2 class="section__title">Entre em Contato</h2>
+            <form class="contato__form" id="contact-form">
+                <div class="form__group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                    <p class="error-message"></p>
+                </div>
+                <div class="form__group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                    <p class="error-message"></p>
+                </div>
+                <div class="form__group">
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Deixe sua mensagem..."></textarea>
+                    <p class="error-message"></p>
+                </div>
+                <button type="submit" class="button">Enviar Mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 DuoTech. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Voltar ao topo"></a>
+</body>
+</html>

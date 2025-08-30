@@ -1,0 +1,507 @@
+/* ==========================================================================
+   1. RESET BÁSICO E VARIÁVEIS GLOBAIS
+   ========================================================================== */
+:root {
+    --header-height: 3.5rem;
+    
+    /* Cores */
+    --first-color: hsl(219, 69%, 56%);
+    --first-color-alt: hsl(219, 69%, 52%);
+    --title-color: hsl(219, 8%, 75%);
+    --text-color: hsl(219, 8%, 55%);
+    --body-color: hsl(219, 4%, 4%);
+    --container-color: hsl(219, 4%, 7%);
+    
+    /* Fontes */
+    --body-font: 'Poppins', sans-serif;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    
+    /* Z-index (para controlar a ordem das camadas) */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3 {
+    color: var(--title-color);
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================================================
+   2. CLASSES REUTILIZÁVEIS E LAYOUT BASE
+   ========================================================================== */
+.container {
+    max-width: 1024px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.section {
+    padding: 4.5rem 0 2rem;
+}
+
+.section__title {
+    font-size: var(--h2-font-size);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--first-color);
+    color: #fff;
+    padding: 1rem 1.75rem;
+    border-radius: .5rem;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--first-color-alt);
+}
+
+
+/* ==========================================================================
+   3. COMPONENTES (HEADER, HERO, CARDS, FORM, ETC.)
+   ========================================================================== */
+
+/* --- HEADER & NAV (ESTILOS PADRÃO - MOBILE) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--z-fixed);
+    background-color: hsla(219, 4%, 10%, 0.5); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); 
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo {
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    font-weight: 500;
+}
+
+.nav__menu {
+    position: fixed;
+    background-color: hsla(219, 4%, 10%, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 80%;
+    height: 100%;
+    top: 0;
+    right: -100%; /* Começa escondido */
+    padding: 4rem 2rem;
+    transition: right .4s ease-out;
+}
+
+.show-menu {
+    right: 0;
+}
+
+.nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.nav__link {
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    font-weight: 500;
+    padding: 0.25rem 0;
+    position: relative;
+    transition: color .3s;
+}
+
+.nav__link:hover {
+    color: var(--first-color);
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--first-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .4s ease-out;
+}
+
+.nav__link:hover::after,
+.active-link::after {
+    transform: scaleX(1);
+}
+
+.active-link {
+    color: var(--first-color) !important;
+    text-shadow: none;
+}
+
+.nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+/* --- ÍCONES COM CSS --- */
+.nav__toggle {
+    background: none; border: none; cursor: pointer; padding: 0;
+    width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+}
+.nav__toggle-icon {
+    display: block; position: relative; width: 24px; height: 2px;
+    background-color: #FFFFFF;
+}
+.nav__toggle-icon::before, .nav__toggle-icon::after {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    background-color: #FFFFFF;
+}
+.nav__toggle-icon::before { transform: translateY(-8px); }
+.nav__toggle-icon::after { transform: translateY(8px); }
+
+.nav__close {
+    background: none; border: none; cursor: pointer;
+    width: 24px; height: 24px; position: relative; 
+}
+.nav__close::before, .nav__close::after {
+    content: ''; position: absolute; top: 50%; left: 0;
+    width: 100%; height: 2px; background-color: var(--title-color);
+}
+.nav__close::before { transform: rotate(45deg); }
+.nav__close::after { transform: rotate(-45deg); }
+
+
+/* --- HERO --- */
+.hero {
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 4rem;
+}
+
+.hero__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width:0%;
+    height: auto;
+    z-index: -2;
+    
+    object-fit: cover;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 1;
+}
+
+.button--ghost {
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    padding: 0.8rem 1.5rem;
+    font-size: var(--small-font-size);
+    transition: background-color 0.3s;
+}
+
+.button--ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* --- SOBRE --- */
+.sobre__grid {
+    display: grid;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.integrante-card {
+    background-color: var(--container-color);
+    padding: 2rem 1.5rem;
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.integrante-card__img {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.integrante-card__nome {
+    margin-bottom: .25rem;
+}
+
+.integrante-card__posicao {
+    font-size: var(--small-font-size);
+    margin-bottom: 1rem;
+}
+
+.integrante-card__social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+/* --- SKILLS (COM ÍCONES) --- */
+.skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none; /* Garante que não haja bolinhas de lista */
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: var(--container-color);
+    border-radius: .5rem;
+    width: 100px; /* Largura fixa para cada item */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.2);
+}
+
+.skill-item i {
+    font-size: 3rem; /* Tamanho do ícone */
+    color: var(--title-color); /* Cor padrão do ícone */
+}
+
+.skill-item span {
+    font-size: var(--small-font-size);
+    font-weight: 500;
+}
+
+
+/* --- PROJETOS --- */
+.projetos__grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.projeto-card {
+    background-color: var(--container-color);
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.projeto-card__content {
+    padding: 1.5rem;
+}
+
+.projeto-card__title {
+    margin-bottom: .5rem;
+}
+
+.projeto-card__desc {
+    font-size: var(--small-font-size);
+    margin-bottom: 1rem;
+}
+
+.projeto-card__link {
+    color: var(--first-color);
+    font-weight: 500;
+}
+
+
+/* --- CONTATO --- */
+.contato__form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form__group {
+    display: grid;
+    gap: .5rem;
+}
+
+.form__group input, .form__group textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: var(--container-color);
+    color: var(--text-color);
+    font-family: var(--body-font); /* Garante a mesma fonte */
+}
+
+.form__group input::placeholder,
+.form__group textarea::placeholder {
+    color: var(--text-color);
+}
+
+.error-message {
+    color: hsl(0, 100%, 63%);
+    font-size: var(--small-font-size);
+    display: none;
+}
+
+
+/* --- FOOTER --- */
+.footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: var(--small-font-size);
+    border-top: 1px solid var(--container-color);
+}
+
+
+/* --- BOTÃO VOLTAR AO TOPO --- */
+.back-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: -20%;
+    background-color: var(--first-color);
+    padding: 0.8rem; /* Aumentei a área para a seta caber melhor */
+    border-radius: .25rem;
+    display: inline-flex;
+    z-index: var(--z-tooltip);
+    transition: bottom .4s;
+}
+
+.back-to-top::after {
+    content: '';
+    border: solid #FFFFFF;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(-135deg);
+}
+
+.back-to-top:hover {
+    background-color: var(--first-color-alt);
+}
+
+.show-scroll {
+    bottom: 3rem;
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVIDADE (MEDIA QUERIES)
+   Tudo que muda em telas maiores vai aqui, de forma organizada.
+   ========================================================================== */
+
+/* Para telas pequenas na horizontal e tablets (ex: iPads na vertical) */
+@media screen and (min-width: 576px) {
+    .sobre__grid, .projetos__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Para tablets na horizontal e desktops */
+@media screen and (min-width: 768px) {
+    /* Ajustes gerais de fonte e layout */
+    :root {
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+    }
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Ajustes específicos do Header/Nav */
+    .nav {
+        height: calc(var(--header-height) + 1.5rem);
+    }
+    .nav__toggle, 
+    .nav__close {
+        display: none; /* Esconde os ícones mobile */
+    }
+    .nav__menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        backdrop-filter: none;
+        padding: 0;
+    }
+    .nav__list {
+        flex-direction: row; /* Alinha os links na horizontal */
+        gap: 2.5rem;
+    }
+}
+
+/* Adicione este código ao seu css/style.css */
+.integrante-card__social img {
+    width: 28px; /* Defina um tamanho padrão */
+    transition: opacity 0.3s;
+}
+
+.integrante-card__social img:hover {
+    opacity: 0.7; /* Deixa o ícone um pouco transparente ao passar o mouse */
+}
+
