@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. RESET BÁSICO E VARIÁVEIS GLOBAIS
-   ========================================================================== */
+/*1. RESET BÁSICO E VARIÁVEIS GLOBAIS */
 :root {
     --header-height: 3.5rem;
     
@@ -60,9 +58,7 @@ img {
 }
 
 
-/* ==========================================================================
-   2. CLASSES REUTILIZÁVEIS E LAYOUT BASE
-   ========================================================================== */
+/* 2. CLASSES REUTILIZÁVEIS E LAYOUT BASE */
 .container {
     max-width: 1024px;
     margin-left: 1.5rem;
@@ -94,11 +90,9 @@ img {
 }
 
 
-/* ==========================================================================
-   3. COMPONENTES (HEADER, HERO, CARDS, FORM, ETC.)
-   ========================================================================== */
+/*3. COMPONENTES (HEADER, HERO, CARDS, FORM, ETC.)*/
 
-/* --- HEADER & NAV (ESTILOS PADRÃO - MOBILE) --- */
+/* --- HEADER & NAV --- */
 .header {
     position: fixed;
     top: 0;
@@ -131,7 +125,7 @@ img {
     width: 80%;
     height: 100%;
     top: 0;
-    right: -100%; /* Começa escondido */
+    right: -100%; 
     padding: 4rem 2rem;
     transition: right .4s ease-out;
 }
@@ -188,32 +182,55 @@ img {
     right: 1.5rem;
 }
 
-/* --- ÍCONES COM CSS --- */
+/* --- ÍCONE ANIMADO --- */
 .nav__toggle {
-    background: none; border: none; cursor: pointer; padding: 0;
-    width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    position: relative; 
+    z-index: 110; 
 }
-.nav__toggle-icon {
-    display: block; position: relative; width: 24px; height: 2px;
-    background-color: #FFFFFF;
-}
-.nav__toggle-icon::before, .nav__toggle-icon::after {
-    content: ''; position: absolute; width: 100%; height: 100%;
-    background-color: #FFFFFF;
-}
-.nav__toggle-icon::before { transform: translateY(-8px); }
-.nav__toggle-icon::after { transform: translateY(8px); }
 
-.nav__close {
-    background: none; border: none; cursor: pointer;
-    width: 24px; height: 24px; position: relative; 
+.nav__toggle-icon,
+.nav__toggle-icon::before,
+.nav__toggle-icon::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    transition: transform 0.4s ease, background-color 0.4s ease;
 }
-.nav__close::before, .nav__close::after {
-    content: ''; position: absolute; top: 50%; left: 0;
-    width: 100%; height: 2px; background-color: var(--title-color);
+
+.nav__toggle-icon::before {
+    transform: translateY(-8px);
 }
-.nav__close::before { transform: rotate(45deg); }
-.nav__close::after { transform: rotate(-45deg); }
+
+.nav__toggle-icon::after {
+    transform: translateY(8px);
+}
+
+/* Animação para o 'X' quando o menu estiver aberto */
+.show-menu .nav__toggle-icon {
+    background-color: transparent; 
+}
+
+.show-menu .nav__toggle-icon::before {
+    transform: rotate(45deg);
+}
+
+.show-menu .nav__toggle-icon::after {
+    transform: rotate(-45deg);
+}
+/* Trava ou destrava o scroll da página */
+.body-no-scroll {
+    overflow: hidden;
+}
 
 
 /* --- HERO --- */
@@ -272,6 +289,34 @@ img {
 
 
 /* --- SOBRE --- */
+
+.section__subtitle {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.05rem;
+    color: var(--text-color);
+    line-height: 1.8;
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* Destaque azul na palavra DuoTech */
+.section__subtitle strong {
+    background: linear-gradient(90deg, var(--first-color), var(--first-color-alt));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+
+.integrante-card__desc {
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
 .sobre__grid {
     display: grid;
     gap: 1.5rem;
@@ -313,7 +358,7 @@ img {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
-    list-style: none; /* Garante que não haja bolinhas de lista */
+    list-style: none; 
 }
 
 .skill-item {
@@ -324,7 +369,7 @@ img {
     padding: 1rem;
     background-color: var(--container-color);
     border-radius: .5rem;
-    width: 100px; /* Largura fixa para cada item */
+    width: 100px; 
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -334,8 +379,8 @@ img {
 }
 
 .skill-item i {
-    font-size: 3rem; /* Tamanho do ícone */
-    color: var(--title-color); /* Cor padrão do ícone */
+    font-size: 3rem;
+    color: var(--title-color); 
 }
 
 .skill-item span {
@@ -393,7 +438,7 @@ img {
     border: none;
     background-color: var(--container-color);
     color: var(--text-color);
-    font-family: var(--body-font); /* Garante a mesma fonte */
+    font-family: var(--body-font); 
 }
 
 .form__group input::placeholder,
@@ -423,7 +468,7 @@ img {
     right: 1rem;
     bottom: -20%;
     background-color: var(--first-color);
-    padding: 0.8rem; /* Aumentei a área para a seta caber melhor */
+    padding: 0.8rem; 
     border-radius: .25rem;
     display: inline-flex;
     z-index: var(--z-tooltip);
@@ -448,22 +493,16 @@ img {
 }
 
 
-/* ==========================================================================
-   4. RESPONSIVIDADE (MEDIA QUERIES)
-   Tudo que muda em telas maiores vai aqui, de forma organizada.
-   ========================================================================== */
+/* 4. RESPONSIVIDADE (MEDIA QUERIES)*/
 
-/* Para telas pequenas na horizontal e tablets (ex: iPads na vertical) */
 @media screen and (min-width: 576px) {
     .sobre__grid, .projetos__grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-
-/* Para tablets na horizontal e desktops */
 @media screen and (min-width: 768px) {
-    /* Ajustes gerais de fonte e layout */
+    
     :root {
         --h1-font-size: 2.25rem;
         --h2-font-size: 1.5rem;
@@ -473,13 +512,13 @@ img {
         margin-right: auto;
     }
 
-    /* Ajustes específicos do Header/Nav */
+   
     .nav {
         height: calc(var(--header-height) + 1.5rem);
     }
     .nav__toggle, 
     .nav__close {
-        display: none; /* Esconde os ícones mobile */
+        display: none; 
     }
     .nav__menu {
         position: static;
@@ -490,18 +529,17 @@ img {
         padding: 0;
     }
     .nav__list {
-        flex-direction: row; /* Alinha os links na horizontal */
+        flex-direction: row;
         gap: 2.5rem;
     }
 }
 
-/* Adicione este código ao seu css/style.css */
 .integrante-card__social img {
-    width: 28px; /* Defina um tamanho padrão */
+    width: 28px; 
     transition: opacity 0.3s;
 }
 
 .integrante-card__social img:hover {
-    opacity: 0.7; /* Deixa o ícone um pouco transparente ao passar o mouse */
+    opacity: 0.7; 
 }
 
